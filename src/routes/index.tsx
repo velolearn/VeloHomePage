@@ -13,7 +13,7 @@ import {
 import { NeuralBg } from "../components/NeuralBg";
 import { EnrollForm } from "../components/EnrollForm";
 import { WhatsAppFab } from "../components/WhatsAppFab";
-import logo from "../assets/velolearn-logo.png";
+import logo from "../assets/velolearn-logo.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -138,7 +138,7 @@ function Nav() {
             alt="VeloLearn Consulting logo"
             className="h-24 w-24 object-contain"
           />
-          <span className="brand-gradient-text">VeloLearn</span>
+          {/* <span className="brand-gradient-text">VeloLearn</span> */}
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((l) => (
