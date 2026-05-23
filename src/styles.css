@@ -1,0 +1,165 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-mid: var(--brand-mid);
+  --color-brand-soft: var(--brand-soft);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Light theme — white background, blue palette pulled from VeloLearn logo */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.22 0.05 250);
+
+  --surface: oklch(0.985 0.005 240);
+  --surface-foreground: oklch(0.22 0.05 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.05 250);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.05 250);
+
+  /* Deep navy blue from logo wordmark */
+  --primary: oklch(0.38 0.13 255);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Brand scale (deep → mid → soft) inspired by logo gradient */
+  --brand-deep: oklch(0.28 0.13 258);
+  --brand-mid: oklch(0.52 0.16 248);
+  --brand-soft: oklch(0.82 0.08 235);
+
+  --secondary: oklch(0.96 0.012 240);
+  --secondary-foreground: oklch(0.22 0.05 250);
+
+  --muted: oklch(0.965 0.01 240);
+  --muted-foreground: oklch(0.48 0.04 250);
+
+  --accent: oklch(0.62 0.17 245);
+  --accent-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.012 240);
+  --input: oklch(0.92 0.012 240);
+  --ring: oklch(0.52 0.16 248);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, oklch(0.52 0.16 248 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.52 0.16 248 / 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .brand-gradient-text {
+    background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand-mid);
+    box-shadow: 0 14px 40px -18px oklch(0.38 0.13 255 / 0.35);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 32px oklch(0.52 0.16 248 / 0.25);
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .form-input {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-input::placeholder { color: var(--muted-foreground); }
+  .form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px oklch(0.52 0.16 248 / 0.18);
+  }
+}

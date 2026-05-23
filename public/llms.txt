@@ -1,0 +1,7 @@
+# VeloLearn
+
+> Live 3-month bootcamp for engineers who want to ship production agentic AI — 90 hours across 15 modules covering tool use, RAG, multi-agent orchestration, evals, and deployment.
+
+## Pages
+
+- [Home](/): Overview of the cohort, curriculum, results, and enrolment.
